@@ -16,8 +16,12 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.001'
-          memory: 6M
+          cpus: 0.50
+          memory: 512M
+        reservations:
+          cpus: 0.25
+          memory: 256M
+
   
   wordpress:
     image: wordpress:latest
@@ -34,11 +38,14 @@ services:
       - WORDPRESS_DB_PASSWORD=wordpress
     networks:
       - wpBlog
-    deploy:
+     deploy:
       resources:
         limits:
-          cpus: '0.001'
-          memory: 6M
+          cpus: 0.25
+          memory: 256M
+        reservations:
+          cpus: 0.10
+          memory: 128M
 
 networks:
   wpBlog:
